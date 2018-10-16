@@ -1,0 +1,89 @@
+#navbar {
+    background-color: #2196F3;
+    padding: 0 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 64px;
+    color: white;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+    z-index: 1000;
+}
+#navbar.transparent {
+    background-color: transparent;
+    top: 30vh;
+    text-align: center;
+}
+#navbar h3 {
+    display: inline-block;
+    margin: 0;
+    line-height: 64px;
+    font-size: 28px;
+    padding-left: 64px;
+    background-size: 54px;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+}
+#navbar.transparent h3 {
+    background-size: 128px;
+    background-position: top center;
+    padding-left: 0;
+    padding-top: 133px;
+    font-size: 48px;
+    text-shadow: 0 0 5px black;
+    display: block;
+}
+#navbar > ul {
+    float: right;
+}
+#navbar.transparent > ul {
+    float: none;
+}
+#navbar ul {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 64px;
+    line-height: 64px;
+}
+#navbar li {
+    float: left;
+    height: 64px;
+}
+#navbar li a {
+    height: 64px;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    cursor: pointer;
+}
+#navbar li.active a {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5px black;
+}
+
+.hidden {
+    display: none;
+}
+
+.login {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    line-height: 10px !important;
+    top: 64px;
+    background: #0288d1;
+    text-align: center;
+}
+
+.login input {
+    border: none;
+    margin-top: 20px;
+}
+

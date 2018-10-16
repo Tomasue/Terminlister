@@ -1,0 +1,50 @@
+{% extends 'template/base.twig' %}
+{% set title = 'Hjem' %}
+{% block content %}
+<div class="container">
+    <table class="rwd-table">
+        <thead class="">
+            <tr>
+                <th>Date start</th>
+                <th>Date end</th>
+                <th>Time start</th>
+                <th>Time end</th>
+                <th>Event description</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for r in row %}
+        <tr>
+            <td>{{ r.date_start }}</td>
+            <td>{{ r.date_end }}</td>
+            <td>{{ r.time_start|date('H:i') }}</td>
+            <td>{{ r.time_end|date('H:i') }}</td>
+            <td>{{ r.event_description }}</td>
+            <td class="btnHolder"><button class="btnDelete" data-value="{{ r.id }}"><i class="fas fa-trash-alt"></i></button><button class="btnEdit"><i class="fas fa-edit"></i></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="form">
+        <form id="eventform" class="eventform hidden" method="post" action="">
+            <input type="date" name="date_start" placeholder="Date start">
+            <input type="date" name="date_end" placeholder="Date end">
+            <input type="time" name="time_start" placeholder="Time start">
+            <input type="time" name="time_end" placeholder="Time end">
+            <input type="text" name="event_description" placeholder="Description">
+            <input type="submit" name="submit">
+        </form>
+        <button id="addevent"><i class="fas fa-plus-square"></i></button>
+    </div>
+</div>
+{% endblock %}
+{% block styles %}
+
+  <link rel="stylesheet" href="/css/table.css">
+
+{% endblock %}
+{% block scripts %}
+
+    <script src="/js/event.js"></script>
+    <script src="/js/date.js"></script>
+
+{% endblock %}
