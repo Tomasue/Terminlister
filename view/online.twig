@@ -1,0 +1,63 @@
+
+    <div class="container">
+        <table class="rwd-table">
+            <thead class="">
+            <tr>
+                <th>Date start</th>
+                <th>Date end</th>
+                <th>Time start</th>
+                <th>Time end</th>
+                <th>Event description</th>
+                <th></th>
+            </tr>
+            </thead>
+            {% for r in row %}
+                <tr class=""  data-end="{{ r.date_end.format('Y-m-d') }} {{ r.time_end|date('H:i') }}">
+                    <td data-th="Start dato">{{ r.date_start.formatLocalized('%d %B %Y') }}</td>
+                    <td data-th="Slutt dato">{{ r.date_end.formatLocalized('%d %B %Y') }}</td>
+                    <td data-th="Start tid">{{ r.time_start|date('H:i') }}</td>
+                    <td data-th="Slutt tid">{{ r.time_end|date('H:i') }}</td>
+                    <td data-th="Beskrivelse">{{ r.event_description }}</td>
+                    <td data-th="Slett / Redigere" class="btnHolder"><button class="btnDelete" data-value="{{ r.id }}"><i class="fas fa-trash-alt"></i></button><button class="btnEdit" data-value="{{ r.id }}"><i class="fas fa-edit"></i></button></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="form">
+            <form id="eventform" class="eventform hidden" method="post" action="">
+                <input type="date" name="date_start" placeholder="Date start">
+                <input type="date" name="date_end" placeholder="Date end">
+                <input type="time" name="time_start" placeholder="Time start">
+                <input type="time" name="time_end" placeholder="Time end">
+                <input type="text" name="event_description" placeholder="Description">
+                <input type="submit" id="submit" name="submit">
+            </form>
+            <button id="addevent"><i class="fas fa-plus-square"></i></button>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2></h2>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <form id="editForm" class="eventform-1" method="post" action="">
+                    <input type="date" name="date_start" id="date-start" value="">
+                    <input type="date" name="date_end" id="date-end" value="">
+                    <input type="time" name="time_start" id="time-start" value="">
+                    <input type="time" name="time_end" id="time-end" value="">
+                    <input type="text" name="event_description" id="event-description" value="">
+                    <input type="hidden" name="id" value="" id="rowId">
+                    <input type="submit" id="editSubmit" name="editSubmit">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <h3></h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/event.js"></script>
+

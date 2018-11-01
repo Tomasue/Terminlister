@@ -1,9 +1,9 @@
- <?php
+<?php
 
 
 use Phinx\Migration\AbstractMigration;
 
-class MigGroups extends AbstractMigration
+class MigSession extends AbstractMigration
 {
     /**
      * Change Method.
@@ -32,11 +32,17 @@ class MigGroups extends AbstractMigration
      */
     public function change()
     {
-        $this->table('groups')
-             ->addColumn('name', 'string', ['limit' => 128])
-             ->addColumn('description', 'string', ['limit' => 256])
-             ->addColumn('created_at', 'datetime', ['default' => 'CURRENT_TIMESTAMP'])
-             ->addIndex('name', ['unique' => true])
+
+        $this->table('sessions')
+             ->addColumn('user_id', 'integer')
+             ->addColumn('ip', 'string', ['limit' => 45])
+             ->addColumn('user_agent', 'string', ['limit' => 255])
+             ->addColumn('key', 'string', ['limit' => 128])
+             ->addColumn('created', 'datetime', ['default' => 'CURRENT_TIMESTAMP'])
+             ->addIndex(['user_id', 'ip', 'user_agent'], ['unique' => true])
+             ->addIndex('key', ['unique' => true])
+             ->addForeignKey('user_id', 'users', 'id')
              ->create();
+
     }
 }

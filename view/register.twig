@@ -1,0 +1,37 @@
+{% extends 'template/base.twig' %}
+{% set title = 'Login' %}
+{% block content %}
+
+    <section class="login-back">
+
+        <div class="container">
+            <div id="register" class="register">
+                <form method="post" class="register-form">
+                    <h1 id="register-title">Register</h1>
+                    <div class="username-row-register row">
+                        <input type="text" name="username" class="username-input" placeholder="Username">
+                        </div>
+                        <div class="password-row-register row">
+                        <input type="password" name="password1" class="password-input" placeholder="Password">
+                    </div>
+                    <div class="password-row-register row">
+                        <input type="password" name="password2" class="password-input" placeholder="Password">
+                    </div>
+                    <input type="submit" name="register" value="Register">
+                </form>
+                <div class="call-to-action-register">
+                    <p>Already have an account? <a href="/login">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block styles %}
+
+    <link rel="stylesheet" type="text/css" href="/css/register.css"/>
+
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

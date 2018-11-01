@@ -1,38 +1,82 @@
 <?php
 
 use Models\Database;
-use Models\Groups;
+use Models\Users;
 use Models\Tables;
 
-$app->get('/', function($request, $response, $args) {
+$app->get('/', function ($request, $response, $args) {
 
-    $stmt = Database::get()->prepare("SELECT * FROM tables");
+
+    $stmt = Database::get()->prepare("SELECT * FROM tables ORDER BY date_end, time_start");
     $stmt->execute();
 
-    $rows = $stmt->FetchAll(PDO::FETCH_ASSOC);
-    $items = array();
+    $rows = $stmt->FetchAll(PDO::FETCH_OBJ);
 
-    foreach ($rows as $row){
-        $items[] = $row;
+    setlocale(LC_ALL , 'nor');
+    \Carbon\Carbon::setLocale('nb_NO');
+
+   foreach ($rows as &$row) {
+       $row->date_start = \Carbon\Carbon::createFromTimestamp(strtotime($row->date_start));
+       $row->date_end = \Carbon\Carbon::createFromTimestamp(strtotime($row->date_end));
     }
+    $online = Users::online();
 
+        return $this->view->render($response, '/index.twig', ['row' => $rows, 'online' => $online]);
 
-    return $this->view->render($response, '/index.twig', array('row' => $rows));
 });
 
-$app->get('/spider', function($request, $response, $args) {
-    return $this->view->render($response, '/spider.twig');
+
+$app->get('/login', function ($request, $response, $args) {
+    return $this->view->render($response, '/login.twig');
 });
 
-$app->post('/', function($request, $response, $args) {
+$app->get('/logout', function ($request, $response, $args) {
+    Users::logout();
+    return $response->withRedirect('/');
+});
+
+$app->post('/login', function ($request, $response, $args) {
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        Users::login($_POST['username'], $_POST['password']);
+    }
+    return $response->withRedirect('/');
+});
+
+$app->get('/register', function ($request, $response, $args) {
+    return $this->view->render($response, '/register.twig');
+});
+
+$app->post('/register', function ($request, $response, $args) {
+   if (isset($_POST['username']) && isset($_POST['password1']) && isset($_POST['password2'])) {
+       Users::register($_POST['username'], $_POST['password1'], $_POST['password2']);
+   }
+    return $response->withRedirect('/');
+});
+
+$app->post('/', function ($request, $response, $args) {
     if (isset($_POST['date_start']) && isset($_POST['time_start']) && isset($_POST['event_description'])) {
         Tables::addTableRow($_POST['date_start'], $_POST['date_end'], $_POST['time_start'], $_POST['time_end'], $_POST['event_description']);
     }
     return $response->withRedirect('/');
 });
 
-$app->post('/table/{id}/delete', function($request, $response, $args) {
-    \Models\Table::delete('tables',['id' => $args['id']]);
+$app->post('/table/{id}/delete', function ($request, $response, $args) {
+    \Models\Table::delete('tables', ['id' => $args['id']]);
 
     return $response->withRedirect('/');
 });
+
+$app->post('/table/{id}/update', function ($request, $response, $args) {
+    \Models\Table::update('tables', [
+        'date_start' => $_POST['date_start'],
+        'date_end' => $_POST['date_end'],
+        'time_start' => $_POST['time_start'],
+        'time_end' => $_POST['time_end'],
+        'event_description' => $_POST['event_description']
+    ], ['id' => $args['id']
+
+    ]);
+
+    return $response->withRedirect('/');
+});
+

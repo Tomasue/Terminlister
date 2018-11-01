@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class User
+class Users
 {
 
     public static function login(string $username, string $password)
@@ -27,7 +27,7 @@ class User
         $stmt = Database::get()->prepare('INSERT INTO sessions(user_id, ip, user_agent, `key`) VALUES(?, ?, ?, ?)');
         if ($stmt->execute([$user->id, $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'], $key])) {
             $_SESSION['user'] = $user;
-            setcookie('_sess', $key, time() + (60 * 60 * 24 * 7), '/', null, false, true);
+            setcookie('terminlister', $key, time() + (60 * 60 * 24 * 7), '/', null, false, true);
         }
     }
 
@@ -63,7 +63,7 @@ class User
          * return true
          */
         $stmt = Database::get()->prepare('SELECT user_id, ip, user_agent FROM sessions WHERE `key`=?');
-        $stmt->execute([$_COOKIE['_sess']]);
+        $stmt->execute([$_COOKIE['terminlister']]);
         $session = $stmt->fetch();
         if ($session->ip === $_SERVER['REMOTE_ADDR'] && $session->user_agent === $_SERVER['HTTP_USER_AGENT']) {
             if (isset($_SESSION['user']) && $_SESSION['user']->id !== $session->user_id) {
@@ -86,8 +86,8 @@ class User
          * Delete session
          */
         $stmt = Database::get()->prepare('DELETE FROM sessions WHERE `key`=?');
-        $stmt->execute([$_COOKIE['_csv']]);
-        setcookie('_csv', '', time()-3600, '/', null, false, true);
+        $stmt->execute([$_COOKIE['terminlister']]);
+        setcookie('terminlister', '', time()-3600, '/', null, false, true);
         unset($_SESSION['user']);
     }
 
