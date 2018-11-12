@@ -7,33 +7,63 @@
         {% else %}
             <h1>TerminLister<a href="/login" style="text-decoration: none; color: #000000;">.</a></h1>
         {% endif %}
+        <div class="header-settings">
+            <button type="button" class="header--theme-button active"
+                    style="--theme-primary:orange; --theme-secondary:white;">
+            </button>
+            <button type="button" class="header--theme-button" style="--theme-primary:#2196F3; --theme-secondary:#eee;">
+            </button>
+            <button type="button" class="header--theme-button" style="--theme-primary:purple; --theme-secondary:white;">
+            </button>
+            <button type="button" class="header--theme-button"
+                    style="--theme-primary:#F44336; --theme-secondary:white;">
+            </button>
+            <button type="button" class="header--theme-button" style="--theme-primary:green; --theme-secondary:white;">
+            </button>
+            <button type="button" class="header--theme-button" style="--theme-primary:#FFEB3B; --theme-secondary:#222;">
+            </button>
+        </div>
+    </div>
 
+    <div class="filter center-text custom-select">
+        <select id="filterOptions" style="margin-top: 20px;">
+            <option value="alle">Alle</option>
+            <option value="hoved">Hoved</option>
+            <option value="junior">Junior</option>
+            <option value="aspirant">Aspirant</option>
+        </select>
+        <button id="btnFilter" class="btnPassed">Filter</button>
     </div>
     {% if online %}
         {% include 'online.twig' %}
     {% endif %}
 
     <section class="timeline">
-        <div class="center-text"><button id="passed" class="btnPassed">Vis mer</button></div>
+        <div class="center-text">
+            <button id="passed" class="btnPassed">Vis mer</button>
+        </div>
         <div id="timeline" class="container">
 
             {% for r in row %}
 
-            <div id="pass" class="timeline-item timeit" data-end="{{ r.date_end.format('Y-m-d') }} {{ r.time_end|date('H:i') }}">
-                <div class="timeline-img"></div>
-                <div class=" {{ loop.index % 2 != 0 ? 'timeline-content js--fadeInLeft' : 'timeline-content timeline-card js--fadeInRight' }}">
-                    {% if r.date_start  ==  r.date_end  %}
-                        <h2 class=""> {{ r.date_start.formatLocalized('%d %B %Y') }}</h2>
-                    {% else %}
-                        <h2 class=""> {{ r.date_start.formatLocalized('%d %B %Y') }} / {{ r.date_end.formatLocalized('%d %B %Y') }}</h2>
-                    {% endif %}
-                    <h4 class="time">{{ r.time_start|date('H:i') }} - {{ r.time_end|date('H:i') }}</h4>
-                    <p>{{ r.event_description }}</p>
+                <div id="pass"
+                     class="timeline-item timeit trRow {{ r.hoved == 1 ? 'hoved' : '' }} {{ r.junior == 1 ? 'junior' : '' }} {{ r.aspirant == 1 ? 'aspirant' : '' }}"
+                     data-end="{{ r.date_end.format('Y-m-d') }} {{ r.time_end|date('H:i') }}">
+                    <div class=""></div>
+                    <div class=" {{ loop.index % 2 != 0 ? 'timeline-content js--fadeInLeft' : 'timeline-content timeline-card js--fadeInRight' }}">
+                        {% if r.date_start  ==  r.date_end %}
+                            <h2 class=""> {{ r.date_start.formatLocalized('%d %B %Y') }}</h2>
+                        {% else %}
+                            <h2 class=""> {{ r.date_start.formatLocalized('%d %B %Y') }}
+                                / {{ r.date_end.formatLocalized('%d %B %Y') }}</h2>
+                        {% endif %}
+                        <h4 class="time">{{ r.time_start|date('H:i') }} - {{ r.time_end|date('H:i') }}</h4>
+                        <p>{{ r.description }}</p>
+                    </div>
                 </div>
-            </div>
 
             {% endfor %}
-            </div>
+        </div>
 
 
     </section>
@@ -41,7 +71,7 @@
 {% endblock %}
 {% block styles %}
 
-  <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/index.css">
 
 {% endblock %}
 {% block scripts %}
@@ -51,6 +81,7 @@
     <script src="/js/modal.js"></script>
     <script src="/js/timeline.js"></script>
     <script src="/js/timeit.js"></script>
+    <script src="/js/theme.js"></script>
 
 
 {% endblock %}

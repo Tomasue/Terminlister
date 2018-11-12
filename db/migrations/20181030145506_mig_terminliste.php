@@ -38,6 +38,9 @@ class MigTerminliste extends AbstractMigration
              ->addColumn('date_end', 'date')
              ->addColumn('time_start', 'time')
              ->addColumn('time_end', 'time')
+             ->addColumn('hoved', 'boolean', ['default' => 0])
+             ->addColumn('junior', 'boolean', ['default' => 0])
+             ->addColumn('aspirant', 'boolean', ['default' => 0])
              ->addColumn('description', 'string', ['limit' => 256])
              ->create();
 

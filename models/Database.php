@@ -9,11 +9,11 @@ class Database
 
     private static $info = [
         'adapter' => 'mysql',
-        'host' => 'localhost',
+        'host' => '10.192.148.241',
         'port' => 3306,
-        'database' => 'csv',
-        'username' => 'root',
-        'password' => 'root',
+        'database' => 'terminlister',
+        'username' => 'optimale',
+        'password' => 'La8pvDBLa8pv',
         'charset' => 'UTF8'
     ];
 

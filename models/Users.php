@@ -65,6 +65,11 @@ class Users
         $stmt = Database::get()->prepare('SELECT user_id, ip, user_agent FROM sessions WHERE `key`=?');
         $stmt->execute([$_COOKIE['terminlister']]);
         $session = $stmt->fetch();
+
+        if (empty($session)) {
+            return false;
+        }
+
         if ($session->ip === $_SERVER['REMOTE_ADDR'] && $session->user_agent === $_SERVER['HTTP_USER_AGENT']) {
             if (isset($_SESSION['user']) && $_SESSION['user']->id !== $session->user_id) {
                 $stmt = Database::get()->prepare('SELECT * FROM users WHERE id=?');

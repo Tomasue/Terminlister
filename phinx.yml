@@ -16,10 +16,10 @@ environments:
 
     development:
         adapter: mysql
-        host: localhost
-        name: csv
-        user: root
-        pass: root
+        host: 10.192.148.241
+        name: terminlister
+        user: optimale
+        pass: La8pvDBLa8pv
         port: 3306
         charset: utf8
 
