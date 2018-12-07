@@ -25,4 +25,4 @@ deploy_alpha:
     - xcopy "../TerminLister" "C:\Websites\_OSKUNDE\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
     - cd C:/Websites/_OSKUNDE/tsk-terminliste
     - composer update
-    - php /vendor/robmorgan/phinx/bin/phinx migrate
+    - php php /var/www/tsk-terminliste.os-kunde.no/vendor/robmorgan/phinx/bin/phinx migrate
