@@ -63,7 +63,10 @@ class Users
          * return true
          */
         $stmt = Database::get()->prepare('SELECT user_id, ip, user_agent FROM sessions WHERE `key`=?');
-        $stmt->execute([$_COOKIE['terminlister']]);
+        if(isset($_COOKIE['terminlister'])){
+            $stmt->execute([$_COOKIE['terminlister']]);
+        }
+
         $session = $stmt->fetch();
 
         if (empty($session)) {

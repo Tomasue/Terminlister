@@ -9,7 +9,7 @@ deploy_dev:
     - php
   script:
     - php C:/Websites/_OSDEV/terminlister/ci.php
-    - xcopy "../terminlister" "C:\Websites\_OSDEV\terminlister" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
+    - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminlister" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
     - cd C:/Websites/_OSDEV/terminlister
     - composer update
     - powershell phinx migrate
@@ -22,7 +22,7 @@ deploy_alpha:
     - php
   script:
     - php C:/Websites/_OSKUNDE/terminlister/ci.php
-    - xcopy "../terminlister" "C:\Websites\_OSKUNDE\terminlister" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
+    - xcopy "../TerminLister" "C:\Websites\_OSKUNDE\tsk-terminlister" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
     - cd C:/Websites/_OSKUNDE/terminlister
     - composer update
     - powershell phinx migrate
