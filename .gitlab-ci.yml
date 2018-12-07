@@ -13,6 +13,7 @@ deploy_dev:
     - cd C:/Websites/_OSDEV/tsk-terminliste
     - composer update
     - phinx migrate
+    - cd C:/Websites/_OSDEV/tsk-terminliste
 
 deploy_alpha:
   stage: deploy
@@ -26,4 +27,4 @@ deploy_alpha:
     - cd C:/Websites/_OSKUNDE/tsk-terminliste
     - composer update
     - phinx migrate
-
+    - cd C:/Websites/_OSKUNDE/tsk-terminliste
