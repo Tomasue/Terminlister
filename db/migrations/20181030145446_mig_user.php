@@ -37,6 +37,7 @@ class MigUser extends AbstractMigration
              ->addColumn('username', 'string', ['limit' => 32])
              ->addColumn('password', 'string', ['limit' => 128])
              ->addColumn('created_at', 'datetime', ['default' => 'CURRENT_TIMESTAMP'])
+             ->addColumn('test', 'string', ['limit' => 20])
              ->addIndex('username', ['unique' => true])
              ->create();
 
