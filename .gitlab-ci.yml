@@ -8,11 +8,11 @@ deploy_dev:
     - php
   before_script:
   - composer update
-  - php C:/Websites/_OSDEV/tsk-terminliste/ci.php
-  - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
   script:
   - cd C:/Websites/_OSDEV/tsk-terminliste
   after_script:
+  - php C:/Websites/_OSDEV/tsk-terminliste/ci.php
+  - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
   - cd C:/Websites/_OSDEV/tsk-terminliste
   - phinx migrate
 deploy_alpha:
