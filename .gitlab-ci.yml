@@ -1,19 +1,19 @@
 stages:
   - deploy
-
 deploy_dev:
   stage: deploy
   only:
     - master
   tags:
     - php
+  before_script:
+  - composer update
   script:
     - php C:/Websites/_OSDEV/tsk-terminliste/ci.php
     - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
     - cd C:/Websites/_OSDEV/tsk-terminliste
-    - phinx migrate
-    - composer update
-
+  after_script:
+  - phinx migrate
 deploy_alpha:
   stage: deploy
   only:
