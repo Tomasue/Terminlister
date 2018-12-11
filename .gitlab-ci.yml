@@ -12,7 +12,7 @@ deploy_dev:
     - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
     - cd C:/Websites/_OSDEV/tsk-terminliste
     - composer update
-    - php /vendor/robmorgan/phinx/bin/phinx migrate
+    - sudo -u USER php /vendor/robmorgan/phinx/bin/phinx migrate -c phinx.yml -e development
 
 deploy_alpha:
   stage: deploy
@@ -25,4 +25,4 @@ deploy_alpha:
     - xcopy "../TerminLister" "C:\Websites\_OSKUNDE\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
     - cd C:/Websites/_OSKUNDE/tsk-terminliste
     - composer update
-    - php php /var/www/tsk-terminliste.os-kunde.no/vendor/robmorgan/phinx/bin/phinx migrate
+    - sudo -u USER php /vendor/robmorgan/phinx/bin/phinx migrate -c phinx.yml -e alpha
