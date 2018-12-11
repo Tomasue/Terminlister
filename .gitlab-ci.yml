@@ -20,8 +20,9 @@ deploy_alpha:
   tags:
     - php
   script:
-    - php C:/Websites/_OSKUNDE/tsk-terminliste/ci.php
-    - xcopy "../TerminLister" "C:\Websites\_OSKUNDE\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
-    - cd C:/Websites/_OSKUNDE/tsk-terminliste
-    - composer update
-    - sudo -u USER php /vendor/robmorgan/phinx/bin/phinx migrate -c phinx.yml -e alpha
+  - php C:/Websites/_OSKUNDE/tsk-terminliste/ci.php
+  - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
+  - cd C:/Websites/_OSKUNDE/tsk-terminliste
+  - composer update
+  after_script:
+  - phinx migrate
