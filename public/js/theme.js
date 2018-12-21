@@ -1,6 +1,9 @@
 $(".header--theme-button").on("click", function() {
     var primaryColor = $(this).css("--theme-primary");
     var secondaryColor = $(this).css("--theme-secondary");
+    localStorage.setItem('primaryCol', primaryColor);
+    localStorage.setItem('secondCol', secondaryColor);
+
 
     $(".header--theme-button").removeClass("active");
     $(this).addClass("active");
