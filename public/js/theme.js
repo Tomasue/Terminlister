@@ -10,8 +10,9 @@ $(".header--theme-button").on("click", function() {
 
 
     $(".header--theme-button").removeClass("active");
-    let selected = $(this).addClass("active");
-
+    $(this).addClass("active");
+    let test = $(this).classList.contains('set');
+    console.log(test);
     let current = sessionStorage.getItem('current');
     current = sessionStorage.setItem('current', selected);
     $('.set-' + current).each(item => {
