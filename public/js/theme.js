@@ -1,7 +1,8 @@
 $(document.body).css("--primary-color", sessionStorage.getItem('bg'));
 $(document.body).css('--secondary-color', sessionStorage.getItem('cc'));
 sessionStorage.getItem('current');
-let current = $('.header--theme-button').attr('class').join('.');
+let current = $('.header--theme-button').attr('class');
+current.join();
 $('.set-' + current).each(item => {
     $(item).addClass('active');
     sessionStorage.setItem('current', current);
