@@ -1,3 +1,5 @@
+$(document.body).css("--primary-color", sessionStorage.getItem('bg'));
+$(document.body).css('--secondary-color', sessionStorage.getItem('cc'));
 $(".header--theme-button").on("click", function() {
 
 
