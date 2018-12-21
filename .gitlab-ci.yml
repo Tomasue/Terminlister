@@ -21,7 +21,7 @@ deploy_alpha:
     - php
   script:
   - php C:/Websites/_OSKUNDE/terminlister/ci.php
-  - xcopy "../TerminLister" "C:\Websites\_OSDEV\tsk-terminliste" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
+  - xcopy "../TerminLister" "C:\Websites\_OSKUNDE\terminlister" /s/h/e/k/f/c/y /EXCLUDE:C:\Websites\excluded.txt
   - cd C:/Websites/_OSKUNDE/terminlister
   - composer update
   after_script:
