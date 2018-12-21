@@ -1,7 +1,9 @@
 $(".header--theme-button").on("click", function() {
     var primaryColor = $(this).css("--theme-primary");
     var secondaryColor = $(this).css("--theme-secondary");
-
+    localStorage.setItem('primaryCol', primaryColor);
+    localStorage.setItem('secondCol', secondaryColor);
+    console.log('nuggest');
 
     $(".header--theme-button").removeClass("active");
     $(this).addClass("active");
@@ -10,6 +12,3 @@ $(".header--theme-button").on("click", function() {
     $(document.body).css("--secondary-color", secondaryColor);
 });
 
-localStorage.setItem('primaryCol', primaryColor);
-localStorage.setItem('secondCol', secondaryColor);
-console.log('nuggest');
