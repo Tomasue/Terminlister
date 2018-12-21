@@ -1,8 +1,8 @@
 $(".header--theme-button").on("click", function() {
     var primaryColor = $(this).css("--theme-primary");
     var secondaryColor = $(this).css("--theme-secondary");
-    localStorage.primary = primaryColor;
-    localStorage.second = secondaryColor;
+    let theme = document.getElementsByClassName('active');
+    localStorage.setItem('theme', theme);
 
 
     $(".header--theme-button").removeClass("active");
@@ -10,11 +10,7 @@ $(".header--theme-button").on("click", function() {
 
 
     if (typeof(Storage) !== "undefined") {
-        $(document.body).css("--primary-color", localStorage.primary);
-        $(document.body).css("--secondary-color", localStorage.second);
-    } else {
-        $(document.body).css("--primary-color", primaryColor);
-        $(document.body).css("--secondary-color", secondaryColor);
-    }
+        $(document.body).css("--primary-color, --secondary-color", localStorage.theme);
+    } 
 });
 
