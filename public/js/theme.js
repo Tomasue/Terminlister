@@ -8,9 +8,9 @@ $(".header--theme-button").on("click", function() {
     $(".header--theme-button").removeClass("active");
     $(this).addClass("active");
 
+    console.log(theme);
 
-    if (typeof(Storage) !== "undefined") {
-        $(document.body).css("--primary-color, --secondary-color", localStorage.theme);
-    } 
+        $(document.body).css("--primary-color, --secondary-color", localStorage.getItem('theme'));
+
 });
 
