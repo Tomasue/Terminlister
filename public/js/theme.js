@@ -1,16 +1,28 @@
 $(".header--theme-button").on("click", function() {
-    var primaryColor = $(this).css("--theme-primary");
-    var secondaryColor = $(this).css("--theme-secondary");
-    let theme = document.getElementsByClassName('active');
-    localStorage.setItem('theme', theme);
 
-
+    
     $(".header--theme-button").removeClass("active");
     $(this).addClass("active");
 
-    console.log(theme);
+    var primaryColor = $(this).css("--theme-primary");
+    var secondaryColor = $(this).css("--theme-secondary");
+    primaryColor = sessionStorage.setItem('bg', primaryColor);
+    secondaryColor = sessionStorage.setItem('cc', secondaryColor);
 
-        $(document.body).css("--primary-color, --secondary-color", localStorage.getItem('theme'));
+        if (sessionStorage.getItem('bg') === primaryColor) {
+            sessionStorage.setItem('bg', primaryColor);
+            sessionStorage.setItem('cc', secondaryColor);
+
+        }
+        else if (sessionStorage.getItem('bg') == null || undefined) {
+            sessionStorage.setItem('bg', 'rgb(6, 23, 37)');
+            sessionStorage.setItem('cc', '#777');
+        }
+    document.body.style.backgroundColor = sessionStorage.getItem('bg');
+    document.body.style.color = sessionStorage.getItem('cc');
+
+    $(document.body).css("--primary-color", primaryColor);
+    $(document.body).css('--secondary-color', secondaryColor);
 
 });
 
