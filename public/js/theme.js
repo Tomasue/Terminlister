@@ -1,6 +1,6 @@
 $(document.body).css("--primary-color", sessionStorage.getItem('bg'));
 $(document.body).css('--secondary-color', sessionStorage.getItem('cc'));
-
+localStorage.getItem('active');
 $(".header--theme-button").on("click", function() {
 
 
