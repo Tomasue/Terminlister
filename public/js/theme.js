@@ -7,9 +7,9 @@ $(".header--theme-button").on("click", function() {
 
     $(".header--theme-button").removeClass("active");
     $(this).addClass("active");
-    
 
-    if (localStorage.getItem('prime')) {
+
+    if (typeof(Storage) !== "undefined") {
         $(document.body).css("--primary-color", localStorage.getItem('prime'));
         $(document.body).css("--secondary-color", localStorage.getItem('second'));
     } else {
