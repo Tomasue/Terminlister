@@ -9,7 +9,8 @@ $(".header--theme-button").on("click", function() {
 
     $(".header--theme-button").removeClass("active");
     $(this).addClass("active");
-    let current = $(this).attr('class').toString();
+    let current = $(this).attr('class');
+    current.toString();
     $('.set-' + current).each(item => {
         $(item).addClass('active');
         sessionStorage.setItem('current', current);
