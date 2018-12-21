@@ -1,13 +1,7 @@
 $(document.body).css("--primary-color", sessionStorage.getItem('bg'));
 $(document.body).css('--secondary-color', sessionStorage.getItem('cc'));
-sessionStorage.getItem('current');
-let current = $('.header--theme-button').attr('class');
-current.toString();
-console.log(current);
-$('.set-' + current).each(item => {
-    $(item).addClass('active');
-    sessionStorage.setItem('current', current);
-});
+
+
 sessionStorage.getItem('current');
 $(".header--theme-button").on("click", function() {
     var primaryColor = $(this).css("--theme-primary");
@@ -19,6 +13,12 @@ $(".header--theme-button").on("click", function() {
         sessionStorage.setItem('bg', primaryColor);
         sessionStorage.setItem('cc', secondaryColor);
     }
+    let current = $(this).attr('class').toString();
+
+    $('.set-' + current).each(item => {
+        $(item).addClass('active');
+        sessionStorage.setItem('current', current);
+    });
 
     $(document.body).css("--primary-color", sessionStorage.getItem('bg'));
     $(document.body).css('--secondary-color', sessionStorage.getItem('cc'));
