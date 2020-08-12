@@ -6,24 +6,6 @@ use Models\Tables;
 
 $app->get('/', function ($request, $response, $args) {
 
-
-    $stmt = Database::get()->prepare("SELECT * FROM terminliste ORDER BY date_end, time_start");
-    $stmt->execute();
-
-    $rows = $stmt->FetchAll(PDO::FETCH_OBJ);
-
-
-    setlocale(LC_ALL , 'nor');
-    \Carbon\Carbon::setLocale('nb_NO');
-
-   foreach ($rows as &$row) {
-       $row->date_start = \Carbon\Carbon::createFromTimestamp(strtotime($row->date_start));
-       $row->date_end = \Carbon\Carbon::createFromTimestamp(strtotime($row->date_end));
-       $row->time_start = \Carbon\Carbon::createFromTimestamp(strtotime($row->time_start));
-    }
-
-    $online = Users::online();
-
         return $this->view->render($response, '/index.twig', ['row' => $rows, 'online' => $online]);
 
 });
