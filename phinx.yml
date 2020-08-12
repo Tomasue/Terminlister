@@ -16,7 +16,7 @@ environments:
 
     development:
         adapter: mysql
-        host: 10.192.148.241
+        host:  localhost
         name: terminlister
         user: optimale
         pass: La8pvDBLa8pv
