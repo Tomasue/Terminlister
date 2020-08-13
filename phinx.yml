@@ -18,8 +18,8 @@ environments:
         adapter: mysql
         host:  localhost
         name: terminlister
-        user: optimale
-        pass: La8pvDBLa8pv
+        user: root
+        pass: ''
         port: 3306
         charset: utf8
 
